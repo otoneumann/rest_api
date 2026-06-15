@@ -1,0 +1,33 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.code-workspace
+
+# Composer (if you add it later)
+vendor/
+composer.lock
+
+# Logs
+*.log
+
+# Cache
+cache/
+*.cache
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# PHPStorm
+*.iml
+
+# Node (if you ever add frontend)
+node_modules/
+
+# Mac system files
+._*
