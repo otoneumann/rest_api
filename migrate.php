@@ -1,7 +1,6 @@
 <?php
 
 $env = parse_ini_file(__DIR__ . '/.env');
-$sql = file_get_contents(__DIR__ . '/database.sql');
 
 $pdo = new PDO(
     'mysql:host=localhost;charset=utf8mb4',
@@ -12,7 +11,19 @@ $pdo = new PDO(
     ]
 );
 
-$pdo->exec($sql);
+$migrationsDir = __DIR__ . '/migrations';
 
-echo "Migration compeleted\n";
+$files = scandir($migrationsDir);
+
+foreach($files as $file){
+    if(pathinfo($file, PATHINFO_EXTENSION) === 'sql'){
+        $sql = file_get_contents($migrationsDir . '/' .$file);
+
+        echo "Running migration: $file\n";
+        $pdo->exec($sql);
+    }
+}
+
+
+echo "All Migrations compeleted\n";
 
