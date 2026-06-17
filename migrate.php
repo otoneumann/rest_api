@@ -15,12 +15,15 @@ $migrationsDir = __DIR__ . '/migrations';
 
 $files = scandir($migrationsDir);
 
-foreach($files as $file){
-    if(pathinfo($file, PATHINFO_EXTENSION) === 'sql'){
-        $sql = file_get_contents($migrationsDir . '/' .$file);
-
+foreach ($files as $file) {
+    if (pathinfo($file, PATHINFO_EXTENSION) === 'sql') {
+        $sql = file_get_contents($migrationsDir . '/' . $file);
+        //var_dump($file);
+        //die;
         echo "Running migration: $file\n";
         $pdo->exec($sql);
+/*        var_dump($sql);
+        die;*/
     }
 }
 
